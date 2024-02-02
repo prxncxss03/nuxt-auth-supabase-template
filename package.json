@@ -10,6 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.2",
+    "@nuxtjs/supabase": "^1.1.6",
     "autoprefixer": "^10.4.17",
     "nuxt": "^3.10.0",
     "nuxt-primevue": "^0.2.2",
@@ -19,6 +21,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.39.3",
     "primevue": "^3.47.2"
   }
 }
