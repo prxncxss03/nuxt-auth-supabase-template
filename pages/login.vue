@@ -1,14 +1,6 @@
 <script setup>
-import { createClient } from '@supabase/supabase-js'
+const supabase = useSupabaseClient()
 
-
-const config = useRuntimeConfig()
-const supabaseUrl = config.public.supabaseUrl
-const supabaseKey = config.public.supabaseKey
-
-console.log('Supabase URL:', supabaseUrl)
-
-const supabase = createClient(supabaseUrl, supabaseKey)
 const email = ref('')
 const password = ref('')
 
