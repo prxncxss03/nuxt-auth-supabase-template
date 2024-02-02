@@ -4,15 +4,12 @@ const supabase = useSupabaseClient()
 const email = ref('')
 const password = ref('')
 
-const router = useRouter()
-
 const submit = async () => {
   console.log(email.value, password.value)
 
   let { data, error } = await supabase.auth.signInWithPassword({
     email: email.value,
-    password: password.value,
-    
+    password: password.value,  
   })
 
   if (error) {
@@ -24,6 +21,14 @@ const submit = async () => {
     console.log('Token:', token)
     
   }
+
+  const { data:log, error:logError } = await supabase
+  .from('sessions')
+  .insert({ user_id: data.user.id})
+
+  if (logError) {
+    console.error('Log Error:', logError)
+  } 
 
   let { data: user, error: userError} = await supabase
   .from('users')
@@ -38,20 +43,16 @@ const submit = async () => {
     switch (user.user_type){
       case 'admin':
         console.log('Admin')
-        router.push('/admin/admin')
+        await navigateTo('/admin/admin')
         break
       case 'regular':
         console.log('Regular')
-        router.push('/regular/regular')
+        await navigateTo('/regular/regular')
         break
       default:
         console.log('Unknown')
     }
   }
-
-  
-
-
 }
 </script>
 
@@ -62,7 +63,5 @@ const submit = async () => {
         <Button label="Submit" @click="submit"/>
         <p class="font-bold text-pink-950">{{ email}}</p>
         <p class="font-bold">{{ password}}</p>
-
-        </div>
-       
+        </div>  
 </template>
