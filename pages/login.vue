@@ -1,31 +1,65 @@
 <script setup>
-const email = useState('email', '')
-const password = useState('password', '')
-
 import { createClient } from '@supabase/supabase-js'
+
+
 const config = useRuntimeConfig()
 const supabaseUrl = config.public.supabaseUrl
 const supabaseKey = config.public.supabaseKey
 
 console.log('Supabase URL:', supabaseUrl)
-console.log('Supabase Key:', supabaseKey)
 
 const supabase = createClient(supabaseUrl, supabaseKey)
-const countries = ref([])
+const email = ref('')
+const password = ref('')
 
-const fetchCountries = async () => {
-  const { data, error } = await supabase.from('countries').select('*')
-  if (error) {
-    console.error('Error fetching countries:', error)
-  } else {
-    countries.value = data
-  }
-}
+const router = useRouter()
 
-fetchCountries()
-
-const submit = () => {
+const submit = async () => {
   console.log(email.value, password.value)
+
+  let { data, error } = await supabase.auth.signInWithPassword({
+    email: email.value,
+    password: password.value,
+    
+  })
+
+  if (error) {
+    console.error('Error:', error)
+  } else {
+    console.log('Data:', data)
+    const token = useCookie('access_token')
+    token.value = data.session.access_token
+    console.log('Token:', token)
+    
+  }
+
+  let { data: user, error: userError} = await supabase
+  .from('users')
+  .select('user_type')
+  .eq('user_id', data.user.id)
+  .single()
+
+  if (userError) {
+    console.error('User Error:', userError)
+  } else {
+    console.log('User:', user)
+    switch (user.user_type){
+      case 'admin':
+        console.log('Admin')
+        router.push('/admin/admin')
+        break
+      case 'regular':
+        console.log('Regular')
+        router.push('/regular/regular')
+        break
+      default:
+        console.log('Unknown')
+    }
+  }
+
+  
+
+
 }
 </script>
 
@@ -37,11 +71,6 @@ const submit = () => {
         <p class="font-bold text-pink-950">{{ email}}</p>
         <p class="font-bold">{{ password}}</p>
 
-        <div class="flex flex-col gap-3">
-            <h2 class="text-2xl font-bold">Countries</h2>
-            <ul class="flex flex-col gap-3">
-                <li v-for="country in countries" :key="country.id" class="font-bold">{{ country.name }}</li>
-            </ul>
         </div>
-    </div>
+       
 </template>

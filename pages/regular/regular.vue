@@ -1,3 +1,7 @@
+<script>
+    
+</script>
+
 <template>
     <div>
         <h1>Regular</h1>
