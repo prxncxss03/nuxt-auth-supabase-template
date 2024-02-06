@@ -25,7 +25,6 @@
         if (sessions.value) {
             return sessions.value.map((item) => {
                 const userCookie = useCookie('userCookie');
-                console.log("User Cookie: ", userCookie);
                 const isCurrentUser = userCookie.value === item.user_id;
                 console.log(`user_id: ${item.user_id}, isCurrentUser: ${isCurrentUser}`);
                 return {

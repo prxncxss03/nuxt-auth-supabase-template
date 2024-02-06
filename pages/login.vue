@@ -20,7 +20,6 @@ const loginWithPassword = async () => {
     return navigateTo('/auth/regular/dashboard')
   } 
 }
-
 </script>
 
 <template>
@@ -28,6 +27,5 @@ const loginWithPassword = async () => {
         <InputText v-model="email" type="text" placeholder="Email"/>
         <Password v-model="password" type="password" placeholder="Password"/> 
         <Button label="Login with Password" @click="loginWithPassword"/>
-        <p class="font-bold text-pink-950">{{ email}}</p>
       </div>  
 </template>
