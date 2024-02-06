@@ -30,8 +30,6 @@ export default eventHandler(async (event) => {
       } else {
         console.log('user type not found')
       }
-
-      console.log('data to be sent to client', data) 
       return data
     }
     

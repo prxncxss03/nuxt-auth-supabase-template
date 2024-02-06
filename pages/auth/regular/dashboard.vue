@@ -1,6 +1,9 @@
 <script setup>
     definePageMeta({
         title: 'Regular User',
+        middleware: [
+            'auth'
+        ]
         
     })
 

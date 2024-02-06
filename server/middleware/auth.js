@@ -1,12 +1,11 @@
-import { serverSupabaseUser } from '#supabase/server';
-
 export default defineEventHandler(async (event) => {
 
-    const user = await serverSupabaseUser(event)
-    if (event.path.startsWith('/auth') && !user ) {
+    const cookies = parseCookies(event);
+    const accessToken = cookies['accessTokenCookie'];
+    if (event.path.startsWith('/auth') && !accessToken ) {
         throw createError({
             status: 401,
-            message: 'Unauthorized',
+            message: 'Unauthorized User',
         })
 
     }
