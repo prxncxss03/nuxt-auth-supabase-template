@@ -22,10 +22,8 @@ export default eventHandler(async (event) => {
       const userType = await getUserDataType(event, data.user.id)
       console.log("user type is: ", userType)
       if (userType === 'admin') {
-        console.log('admin logged in!')
         setCookie(event, 'userTypeCookie', 'admin')      
       } else if (userType === 'regular') {
-        console.log('user logged in!')
         setCookie(event, 'userTypeCookie', 'regular')
       } else {
         console.log('user type not found')

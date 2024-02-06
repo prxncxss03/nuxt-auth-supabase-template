@@ -4,10 +4,7 @@
         middleware: [
             'auth'
         ]
-        
     })
-
-   
     const { signOut } = useSignOut()
 </script>
 

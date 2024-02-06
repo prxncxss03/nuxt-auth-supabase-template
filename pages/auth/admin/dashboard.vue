@@ -2,15 +2,12 @@
    definePageMeta({
     title: 'Admin Dashboard',
     middleware: [
-    
+        'auth',
     ]
    })
     const { signOut } = useSignOut()
     const user = useSupabaseUser()
-
     const sessions = ref(null);
-    const error = ref(null);
-    
 
     onMounted( () => {
         fetchSessions();
@@ -20,13 +17,10 @@
 
     const fetchSessions = async () => {
         const { data } = await $fetch('/api/admin/getSessions');
-        console.log("Data from admin: ", data);
         sessions.value = data;
     }
     
-
     const sessionsData = computed(() => {
-        console.log("Data Value: ", sessions.value);
 
         if (sessions.value) {
             return sessions.value.map((item) => {
