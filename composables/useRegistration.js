@@ -3,10 +3,8 @@ export const useRegistration = () => {
   const email = ref('');
   const password = ref('');
 
-  const isValidEmail = computed(() => /\S+@\S+\.\S+/.test(email.value));
-  const isValidPassword = computed(() => password.value.length >= 6);
-  const isValidName = computed(() => name.value.length < 300);
-  const isValidForm = computed(() => isValidEmail.value && isValidPassword.value && isValidName.value);
+  const { isValidEmail, isValidPassword, isValidName } = useValidation();
+  const isValidForm = computed(() => isValidEmail(email.value) && isValidPassword(password.value) && isValidName(name.value));
 
   const register = async () => {
     if (!isValidForm.value) return;

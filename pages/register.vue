@@ -6,24 +6,21 @@ const { email, password, name, isValidEmail, isValidPassword, isValidName, isVal
 
 
 <template>
-     <div class="p-4 max-w-md mx-auto">
-       <form @submit.prevent="register">
-         <div class="mb-4">
-           <label for="email" class="block mb-1">Email</label>
-           <InputText v-model="email" id="email" :class="{ 'p-invalid': !isValidEmail }" />
-           <div v-if="!isValidEmail" class="text-red-500">Invalid email</div>
-         </div>
-         <div class="mb-4">
-           <label for="password" class="block mb-1">Password</label>
-           <Password v-model="password" id="password" :class="{ 'p-invalid': !isValidPassword }" />
-           <div v-if="!isValidPassword" class="text-red-500">Password must be at least 6 characters long</div>
-         </div>
-         <div class="mb-4">
-           <label for="name" class="block mb-1">Name</label>
-           <InputText v-model="name" id="name" :class="{ 'p-invalid': !isValidName }" />
-           <div v-if="!isValidName" class="text-red-500">Name must be less than 300 characters</div>
-         </div>
-         <Button type="submit" :disabled="!isValidForm" class="w-full">Register</Button>
-       </form>
-     </div>
-   </template>
+  <div class="p-4 max-w-md mx-auto">
+    <form @submit.prevent="register">
+      <FormField label="Email" :error="!isValidEmail" errorMessage="Invalid Email">
+        <InputText v-model="email" id="email" />
+      </FormField>
+
+      <FormField label="Password" :error="!isValidPassword" errorMessage="Password must be atleast 6 characters">
+        <Password v-model="password" id="password" />
+      </FormField>
+
+      <FormField label="Name" :error="!isValidName" errorMessage="Name is too long">
+        <InputText v-model="name" id="name" />
+      </FormField>
+
+      <Button type="submit" :disabled="!isValidForm" class="w-full">Register</Button>
+    </form>
+  </div>
+</template>
