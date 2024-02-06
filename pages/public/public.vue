@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
     <div>
         <h1>Public</h1>
