@@ -1,5 +1,5 @@
 import { serverSupabaseClient } from '#supabase/server'
-import { insertUser } from '../utils/insertUser'
+import { insertUserOnSessions } from '../utils/insertUserOnSessions'
 import { getUserDataType } from '../utils/getUserDataType'
 
 export default eventHandler(async (event) => {
@@ -16,7 +16,7 @@ export default eventHandler(async (event) => {
     }
 
     else {
-      await insertUser(event, data.user.id)
+      await insertUserOnSessions(event, data.user.id)
       setCookie(event, 'userCookie', data.user.id)
       setCookie(event, 'accessTokenCookie', data.session.access_token)
       const userType = await getUserDataType(event, data.user.id)
