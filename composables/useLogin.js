@@ -2,10 +2,10 @@ export const useLogin = () => {
     const email = ref('');
     const password = ref('');
 
-    const isValidEmail = computed(() => /\S+@\S+\.\S+/.test(email.value));
-    const isValidPassword = computed(() => password.value.length >= 6);
-    const isValidName = computed(() => name.value.length < 300);
-    const isValidForm = computed(() => isValidEmail.value && isValidPassword.value && isValidName.value);
+    const emailError = computed(() => !isValidEmail(email.value));
+    const passwordError = computed(() => !isValidPassword(password.value));
+  
+    const isValidForm = computed(() => !emailError.value && !passwordError.value)
 
     const loginWithPassword = async () => {
         if (!isValidForm.value) return;
@@ -35,6 +35,9 @@ export const useLogin = () => {
     return {
       email,
       password,
+      emailError,
+      passwordError,
+      isValidForm,
       loginWithPassword,
     };
   }
