@@ -1,6 +1,15 @@
 <script setup>
-   definePageMeta({
+   useHead({
     title: 'Admin Dashboard',
+    meta: [
+      {
+        name: 'description',
+        content: 'Admin Dashboard'
+      }
+    ]
+    })
+    
+   definePageMeta({
     middleware: [
         'auth',
     ]

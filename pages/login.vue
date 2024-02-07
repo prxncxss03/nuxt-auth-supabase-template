@@ -1,11 +1,20 @@
 <script setup>
+  useHead({
+    title: 'Login',
+    meta: [
+      {
+        name: 'description',
+        content: 'Login to your account'
+      }
+    ] 
+  })
 
-  const {email, password, emailError, passwordError, isValidForm, loginWithPassword } = useLogin()
+  const {email, password, emailError, passwordError, isValidForm, isErrorLogin, loginError, loginWithPassword } = useLogin()
 
 </script>
 
 <template>
-  <div class="p-4 max-w-md mx-auto">
+  <div class="flex bg-green-400 justify-center items-center h-screen">
     <form @submit.prevent="loginWithPassword">
       <FormField label="Email" :error="emailError" errorMessage="Invalid Email">
       <InputText v-model="email" id="email"  />
@@ -16,6 +25,7 @@
       </FormField>
 
       <Button type="submit" :disabled="!isValidForm" class="w-full">Login</Button>
+      <Message severity="error">Error Message</Message>         
     </form>
   </div> 
 </template>

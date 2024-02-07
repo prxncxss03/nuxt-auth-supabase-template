@@ -1,4 +1,13 @@
 <script setup>
+  useHead({
+    title: 'Register',
+    meta: [
+      {
+        name: 'description',
+        content: 'Register to your account'
+      }
+    ]
+  })
  const { name, email, password, nameError, emailError, passwordError, isValidForm, register } = useRegister()
 </script>
 

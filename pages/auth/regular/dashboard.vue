@@ -1,6 +1,15 @@
 <script setup>
-    definePageMeta({
+    useHead({
         title: 'Regular User',
+        meta: [
+            {
+                name: 'description',
+                content: 'Dashboard'
+            }
+        ]
+    })
+
+    definePageMeta({
         middleware: [
             'auth'
         ]

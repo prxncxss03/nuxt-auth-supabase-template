@@ -18,5 +18,5 @@ export default defineEventHandler(async (event) => {
 
     await sendRedirect(event, redirect_to)
 
-  return data
+  return { data: 'verified' }
 })
