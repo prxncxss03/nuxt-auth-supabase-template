@@ -17,8 +17,12 @@ export default defineEventHandler(async (event) => {
 
     else {
         console.log('data from register:', data)
+        
+
         console.log('data.user.confirmed_at', data.user.confirmed_at)
+        
         if(data.user.confirmed_at){
+            console.log("user confirmed----------")
             await insertUserOnUsers(event, data.user.id, name)
         }
         return data

@@ -20,6 +20,7 @@ export const useLogin = () => {
   
         const userTypeCookie = useCookie('userTypeCookie');
         const userType = userTypeCookie.value;
+        console.log('iam triggered login', response)
     
         switch (userType) {
             case 'admin':

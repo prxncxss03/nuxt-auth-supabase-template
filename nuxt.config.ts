@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
   ],
   supabase: { 
-    redirect: false,
+    redirect: false
   },
   runtimeConfig: {
     public: {
@@ -32,5 +32,10 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  routeRules: {
+    '/' : { redirect: '/login' },
+  }
+ 
+  
   
 })

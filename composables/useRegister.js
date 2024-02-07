@@ -21,6 +21,9 @@ export const useRegister = () => {
           },
         });
         console.log('register data', response);
+        if (response.user){
+          await navigateTo('/login')
+        }
       } catch (error) {
         console.error('Error registering user:', error);
       }

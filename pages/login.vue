@@ -15,7 +15,7 @@
         <Password v-model="password" id="password" />
       </FormField>
 
-      <Button type="submit" :disabled="!isValidForm" class="w-full">Register</Button>
+      <Button type="submit" :disabled="!isValidForm" class="w-full">Login</Button>
     </form>
   </div> 
 </template>
