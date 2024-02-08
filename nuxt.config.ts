@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     public: {
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseKey: process.env.SUPABASE_KEY,
+      baseUrl: process.env.BASE_URL,
     },
   
   }, 
