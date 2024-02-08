@@ -18,7 +18,7 @@ export default eventHandler(async (event) => {
 
     else {
       await insertUserOnSessions(event, data.user.id)
-      await insertIfNotExists(event, data.user.id, )
+
       setCookie(event, 'userCookie', data.user.id)
       setCookie(event, 'accessTokenCookie', data.session.access_token)
       const userType = await getUserDataType(event, data.user.id)

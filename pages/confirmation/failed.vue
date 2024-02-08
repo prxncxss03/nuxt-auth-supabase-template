@@ -11,9 +11,9 @@
 </script>
 
 <template>
-    <div class="flex font-inter dark:bg-gray-900 justify-center items-center h-screen">
-      <h3 class="text-2xl dark:text-green-200">Oops! There was a problem</h3>
-        <NuxtLink to="/register" class="dark:text-blue-400 text-blue-500">Go back</NuxtLink>
-    </div> 
-  </template>
+    <div class="flex font-inter flex-col dark:bg-gray-900 justify-center items-center h-screen">
+      <h3 class="text-2xl dark:text-red-200 ">Failed to confirm your account. 😥</h3>
+      <Button @click="goBack" class="mt-4" label="Go Back" />
+    </div>
+</template>
   

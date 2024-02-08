@@ -9,11 +9,6 @@
         ]
     })
 
-    const router = useRouter()
-    const goBack = async () => {
-        router.back()
-    }
-
 </script>
 
 <template>

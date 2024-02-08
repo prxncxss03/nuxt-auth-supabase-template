@@ -1,5 +1,5 @@
 import { serverSupabaseClient } from '#supabase/server'
-import { insertUserOnUsers } from '../utils/insertUserOnUsers'
+import { insertIfNotExists } from '../utils/insertIfNotExist'
 
 export default defineEventHandler(async (event) => {
     const client = await serverSupabaseClient(event)
@@ -11,14 +11,16 @@ export default defineEventHandler(async (event) => {
     })
 
     if (error) {
-        console.error('Error during login:', error)
+        console.error('Error during register:', error)
         throw error
     }
 
     else {
-        //check if the user already exists
-        
-
+        const noAccount = await insertIfNotExists(event, data.user.id, name)
+        console.log('noAccount:', noAccount)
+        if (!noAccount){
+            return { data: 'User has already been registered. Please login.'}
+        }
         console.log('data from register:', data)
         return { data: 'registered waiting for verification'}
     }

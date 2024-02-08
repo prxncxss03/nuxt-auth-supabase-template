@@ -47,6 +47,12 @@ export const useRegister = () => {
           },
         });
 
+        if (response.data === 'User has already been registered. Please login.') {
+          isErrorRegister.value = true;
+          registerError.value = 'User has already been registered. Please login.';
+          return;
+
+        }
 
         isErrorRegister.value = false;
         name.value = '';
@@ -56,6 +62,7 @@ export const useRegister = () => {
         emailTouched.value = false;
         passwordTouched.value = false;
         registerClick.value = true;
+
       } catch (error) {
         console.error('Error registering user:', error);
         isErrorRegister.value = true;
