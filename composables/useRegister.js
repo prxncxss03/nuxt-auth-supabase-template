@@ -2,15 +2,38 @@ export const useRegister = () => {
     const name = ref('');
     const email = ref('');
     const password = ref('');
+
+    const registerClick = ref(false);
   
-    const nameError = computed(() => !isValidName(name.value));
+    const nameError = computed(() => nameTouched.value && !isValidName(name.value));
     const emailError = computed(() => emailTouched.value && !isValidEmail(email.value));
     const passwordError = computed(() => passwordTouched.value && !isValidPassword(password.value));
 
+    const isErrorRegister = ref(false);
+    const registerError = ref('');
+
+    const nameTouched = ref(false);
     const emailTouched = ref(false);
     const passwordTouched = ref(false);
   
     const isValidForm = computed(() => !nameError.value && !emailError.value && !passwordError.value);
+
+    watch(isErrorRegister, (value) => {
+      if (value) {
+          setTimeout(() => {
+              isErrorRegister.value = false;
+          }, 8000);
+      }
+  });
+
+
+    watch(registerClick, (value) => {
+      if (value) {
+          setTimeout(() => {
+              registerClick.value = false;
+          }, 8000);
+      }
+  })
   
     const register = async () => {
       if (!isValidForm.value) return;
@@ -23,12 +46,20 @@ export const useRegister = () => {
             password: password.value,
           },
         });
-        console.log('register data', response);
-        if (response.user){
-          await navigateTo('/login')
-        }
+
+
+        isErrorRegister.value = false;
+        name.value = '';
+        email.value = '';
+        password.value = '';
+        nameTouched.value = false;
+        emailTouched.value = false;
+        passwordTouched.value = false;
+        registerClick.value = true;
       } catch (error) {
         console.error('Error registering user:', error);
+        isErrorRegister.value = true;
+        registerError.value = 'Error registering user';
       }
     };
   
@@ -36,10 +67,16 @@ export const useRegister = () => {
       name,
       email,
       password,
+      nameTouched,
+      emailTouched,
+      passwordTouched,
       nameError,
       emailError,
       passwordError,
+      isErrorRegister,
+      registerError,
       isValidForm,
+      registerClick,
       register,
     };
 }

@@ -11,12 +11,13 @@ export default defineEventHandler(async (event) => {
     })
 
     if (error) {
+        await sendRedirect(event, `http://localhost:3000/confirmation/failed`)
         throw new Error(error.message)
     }
 
     console.log('successfully verified token', data)
 
-    await sendRedirect(event, redirect_to)
+    await sendRedirect(event, 'http://localhost:3000/confirmation/successful')
 
   return { data: 'verified' }
 })

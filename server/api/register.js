@@ -16,6 +16,9 @@ export default defineEventHandler(async (event) => {
     }
 
     else {
+        //check if the user already exists
+        
+
         console.log('data from register:', data)
         return { data: 'registered waiting for verification'}
     }
