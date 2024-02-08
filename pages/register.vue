@@ -29,7 +29,7 @@
       <Button type="submit" :disabled="!isValidForm" class="w-full">Register</Button>
       <Message severity="error">Error Message</Message>
 
-      <p class="text-center">Already have an account? <NuxtLink to="/login" class="text-blue-500">Login</NuxtLink></p>
+      <FormFooter path="/login" label="Login" title="Already have an account?" />
       </form>
   </div>
 </template>

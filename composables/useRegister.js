@@ -4,8 +4,11 @@ export const useRegister = () => {
     const password = ref('');
   
     const nameError = computed(() => !isValidName(name.value));
-    const emailError = computed(() => !isValidEmail(email.value));
-    const passwordError = computed(() => !isValidPassword(password.value));
+    const emailError = computed(() => emailTouched.value && !isValidEmail(email.value));
+    const passwordError = computed(() => passwordTouched.value && !isValidPassword(password.value));
+
+    const emailTouched = ref(false);
+    const passwordTouched = ref(false);
   
     const isValidForm = computed(() => !nameError.value && !emailError.value && !passwordError.value);
   

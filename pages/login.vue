@@ -10,25 +10,25 @@
     ] 
   })
 
-  const {email, password, emailError, passwordError, isValidForm, isErrorLogin, loginError, emailTouched, passwordTouched, loginWithPassword } = useLogin()
+  const {email, password, emailError, isValidForm, isErrorLogin, loginError, emailTouched, loginWithPassword } = useLogin()
 
 </script>
 
 <template>
-  <div class="flex font-inter bg-slate-900 justify-center items-center h-screen">
+  <div class="flex font-inter dark:bg-gray-900 justify-center items-center h-screen">
     <form @submit.prevent="loginWithPassword">
       <FormField label="Email" :error="emailError" errorMessage="Invalid Email">
       <InputText v-model="email" id="email" @blur="emailTouched = true" />
     </FormField>
 
-      <FormField label="Password" :error="passwordError" errorMessage="Password must be atleast 6 characters">
-        <Password v-model="password" id="password" @blur="passwordTouched = true"  />
+      <FormField label="Password" >
+        <Password v-model="password" id="password" />
       </FormField>
 
-      <Button type="submit" :disabled="!isValidForm" class="w-full mt-2">Login</Button>
+      <Button type="submit" :disabled="!isValidForm" class="w-full mt-2 dark:text-gray-900">Login</Button>
       <Message severity="error" v-if="isErrorLogin" > {{ loginError }} </Message>         
 
-      <p class="text-center mt-2">Don't have an account? <NuxtLink to="/register" class="text-blue-500">Register</NuxtLink></p>
+      <FormFooter path="/register" label="Register" title="Don't have an account?" />
     </form>
   </div> 
 </template>

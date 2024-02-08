@@ -6,10 +6,8 @@ export const useLogin = () => {
     const loginError = ref('');
 
     const emailError = computed(() => emailTouched.value && !isValidEmail(email.value));
-    const passwordError = computed(() => passwordTouched.value && !isValidPassword(password.value));
 
     const emailTouched = ref(false);
-    const passwordTouched = ref(false);
 
     watch(isErrorLogin, (value) => {
         if (value) {
@@ -19,10 +17,11 @@ export const useLogin = () => {
         }
     });
   
-    const isValidForm = computed(() => !emailError.value && !passwordError.value );
+    const isValidForm = computed(() => !emailError.value && password.value.length > 0);
 
     const loginWithPassword = async () => {
         if (!isValidForm.value) return;
+
         
         try {
             const response = await $fetch('/api/login', {
@@ -36,6 +35,10 @@ export const useLogin = () => {
                 const userTypeCookie = useCookie('userTypeCookie');
                 const userType = userTypeCookie.value;
                 console.log("responses from login", response)
+                email.value = '';
+                password.value = '';
+                emailTouched.value = false;
+
             switch (userType) {
                 case 'admin':
                 return navigateTo('/auth/admin/dashboard');
@@ -46,10 +49,9 @@ export const useLogin = () => {
                 return navigateTo('/login');
             }
             } catch (error) {
-                console.log('error from login client', error)
                 isErrorLogin.value = true;
                 loginError.value = "Invalid email or password";
-                console.error('Error logging in:', error);
+                
             }
         }
   
@@ -57,12 +59,10 @@ export const useLogin = () => {
         email,
         password,
         emailError,
-        passwordError,
         isValidForm,
         isErrorLogin,
         loginError,
         emailTouched,
-        passwordTouched,
         loginWithPassword,
     };
   }
