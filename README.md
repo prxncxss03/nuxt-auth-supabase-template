@@ -1,75 +1,48 @@
-# Nuxt 3 Minimal Starter
+# Nuxt.js Login App with Supabase Integration
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a simple login app created with Nuxt.js, Prime Vue, Tailwind, and Supabase. It serves as a template or guide for building a minimal authentication system with server-side rendering (SSR).
+
+## Features
+
+- User authentication with regular and admin roles.
+- Server and client route protection.
+- Supabase integration for user data storage.
+- Token verification for email confirmation.
+- Dynamic theming based on the system theme (light/dark).
 
 ## Setup
 
-Make sure to install the dependencies:
+1. Clone the repository:
 
-```bash
-# npm
-npm install
+   ```bash
+   git clone https://github.com/prxncxss03/simple-login.git
+   ```
 
-# pnpm
-pnpm install
+2. Install dependencies:
 
-# yarn
-yarn install
+   ```bash
+     npm install
+   ```
+3. Set up environment variables:
 
-# bun
-bun install
-```
+   ```bash
+     SUPABASE_URL=<URL>
+     SUPABASE_KEY=<anon key>
+     BASE_URL=http://localhost:3000
+   ```
+4. Run the app:
+    ```bash
+       npm run dev
+     ```
+Visit http://localhost:3000 in your browser to see the app in action.
 
-## Development Server
+## Usage
+- Regular users: After login, a greeting and a logout button are displayed.  
+- Admin users: A table shows user IDs and the number of logins.
+- Email Confirmation: Clicking the confirmation email redirects to a confirmation page.
+- Theme: The app dynamically changes based on the system theme.
 
-Start the development server on `http://localhost:3000`:
+## Notes
+This app was developed as an assignment for an upcoming OJT. It's a great starting point for building more complex applications with Nuxt.js and Supabase.
 
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Feel free to customize and extend the app according to your needs!
