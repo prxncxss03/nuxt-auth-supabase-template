@@ -1,5 +1,11 @@
 <script setup>
   useHead ({
+    meta: [
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1.0'
+      },
+    ],
     link: [
       {
         rel: 'stylesheet',
@@ -7,13 +13,15 @@
       }
     ]
   })
-
 </script>
 
 <template>
-    <div class="h-screen">
-      <NuxtLink to="/login">Login</NuxtLink>
-      <NuxtLink to="/register">Register</NuxtLink>
-    </div>
-  <NuxtPage />
+  <NuxtPage/>
 </template>
+
+<style>
+  @import url('/assets/css/global.css');
+</style>
+```
+
+

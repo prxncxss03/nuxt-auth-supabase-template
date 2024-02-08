@@ -12,11 +12,10 @@
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.2",
     "@nuxtjs/supabase": "^1.1.6",
+    "@nuxtjs/tailwindcss": "^6.11.3",
     "autoprefixer": "^10.4.17",
     "nuxt": "^3.10.0",
     "nuxt-primevue": "^0.2.2",
-    "postcss": "^8.4.33",
-    "tailwindcss": "^3.4.1",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },

@@ -27,6 +27,9 @@
       </FormField>
 
       <Button type="submit" :disabled="!isValidForm" class="w-full">Register</Button>
-    </form>
+      <Message severity="error">Error Message</Message>
+
+      <p class="text-center">Already have an account? <NuxtLink to="/login" class="text-blue-500">Login</NuxtLink></p>
+      </form>
   </div>
 </template>

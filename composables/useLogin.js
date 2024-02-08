@@ -2,13 +2,24 @@ export const useLogin = () => {
     const email = ref('');
     const password = ref('');
 
-    const isErrorLogin = ref(true);
-    const loginError = ref(null);
+    const isErrorLogin = ref(false);
+    const loginError = ref('');
 
-    const emailError = computed(() => !isValidEmail(email.value));
-    const passwordError = computed(() => !isValidPassword(password.value));
+    const emailError = computed(() => emailTouched.value && !isValidEmail(email.value));
+    const passwordError = computed(() => passwordTouched.value && !isValidPassword(password.value));
+
+    const emailTouched = ref(false);
+    const passwordTouched = ref(false);
+
+    watch(isErrorLogin, (value) => {
+        if (value) {
+            setTimeout(() => {
+                isErrorLogin.value = false;
+            }, 8000);
+        }
+    });
   
-    const isValidForm = computed(() => !emailError.value && !passwordError.value)
+    const isValidForm = computed(() => !emailError.value && !passwordError.value );
 
     const loginWithPassword = async () => {
         if (!isValidForm.value) return;
@@ -21,10 +32,10 @@ export const useLogin = () => {
                 password: password.value,
                 },
             });
-      
-            const userTypeCookie = useCookie('userTypeCookie');
-            const userType = userTypeCookie.value;
-        
+                isErrorLogin.value = false;
+                const userTypeCookie = useCookie('userTypeCookie');
+                const userType = userTypeCookie.value;
+                console.log("responses from login", response)
             switch (userType) {
                 case 'admin':
                 return navigateTo('/auth/admin/dashboard');
@@ -35,18 +46,23 @@ export const useLogin = () => {
                 return navigateTo('/login');
             }
             } catch (error) {
+                console.log('error from login client', error)
                 isErrorLogin.value = true;
-                loginError.value = error.message;
+                loginError.value = "Invalid email or password";
                 console.error('Error logging in:', error);
             }
         }
   
     return {
-      email,
-      password,
-      emailError,
-      passwordError,
-      isValidForm,
-      loginWithPassword,
+        email,
+        password,
+        emailError,
+        passwordError,
+        isValidForm,
+        isErrorLogin,
+        loginError,
+        emailTouched,
+        passwordTouched,
+        loginWithPassword,
     };
   }

@@ -13,7 +13,7 @@ export default eventHandler(async (event) => {
 
     if (error) {
       console.error('Error during login:', error)
-      throw error
+      return error
     }
 
     else {
