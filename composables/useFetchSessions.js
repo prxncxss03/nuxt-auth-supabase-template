@@ -17,7 +17,6 @@ export const useFetchSessions = () => {
             return sessions.value.map((item) => {
                 const userCookie = useCookie('userCookie');
                 const isCurrentUser = userCookie.value === item.user_id;
-                console.log(`user_id: ${item.user_id}, isCurrentUser: ${isCurrentUser}`);
                 return {
                     user_id: item.user_id,
                     count: item.count,
