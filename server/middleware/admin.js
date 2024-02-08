@@ -12,10 +12,7 @@ export default defineEventHandler(async (event) => {
     }
 
     if (event.path.startsWith('/auth/regular') && userTypeCookie !== 'regular') {
-        throw createError({
-            status: 401,
-            message: 'Unauthorized',
-        })
+        await sendRedirect(event, config.public.baseUrl + '/error/unauthorized')
     }
     
 })

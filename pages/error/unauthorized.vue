@@ -1,9 +1,19 @@
 <script setup>
+    useHead({
+        title: 'Unauthorized',
+        meta: [
+            {
+                name: 'description',
+                content: 'You are not authorized to view this page'
+            }
+        ]
+    })
+
     const router = useRouter()
     const goBack = async () => {
         router.back()
-
     }
+
 </script>
 
 <template>

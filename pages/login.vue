@@ -1,5 +1,4 @@
 <script setup>
-  import Button from 'primevue/button';
   useHead({
     title: 'Login',
     meta: [
