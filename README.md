@@ -89,3 +89,7 @@ This project is licensed under the [MIT](https://opensource.org/licenses/MIT) Li
 This app was developed as an assignment for an upcoming OJT. It's a great starting point for building more complex applications with Nuxt.js and Supabase.
 
 Feel free to customize and extend the app according to your needs!
+
+## Temporary Demo 
+[Screencast from Friday, 09 February, 2024 06:21:59 AM PST.webm](https://github.com/prxncxss03/nuxt-auth-supabase-template/assets/84000523/edcfb701-4c71-471b-b064-a6ae61e24067)
+
